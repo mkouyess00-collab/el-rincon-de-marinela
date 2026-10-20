@@ -104,9 +104,8 @@ p { margin: 0; }
 /* ---------- portada ---------- */
 .hero { display: grid; grid-template-columns: 7fr 5fr; min-height: 100svh; padding-top: 78px; }
 .hero__pic { height: calc(100svh - 78px); }
-.hero__text { display: flex; flex-direction: column; justify-content: center; padding: 48px var(--m) clamp(40px, 6vh, 72px); }
-.hero h1 { margin: 0; line-height: 0; }
-.hero__logo img { display: block; width: min(100%, 900px); height: auto; }
+.hero__text { display: flex; flex-direction: column; justify-content: flex-end; padding: 48px var(--m) clamp(40px, 6vh, 72px); }
+.hero h1 { font-size: clamp(4rem, 0.5rem + 8.4vw, 11rem); line-height: .9; }
 .hero h1 .ln { display: block; overflow: hidden; padding-top: .16em; margin-top: -.12em; white-space: nowrap; }
 .hero h1 .ln > span { display: block; }
 .hero h1 .ln:last-child { color: var(--sage); }
@@ -286,8 +285,6 @@ p { margin: 0; }
 @media (prefers-reduced-motion: no-preference) {
   .js .rise { opacity: 0; transform: translateY(32px); transition: opacity 900ms var(--ease-out), transform 1000ms var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
   .js .rise.in { opacity: 1; transform: none; }
-  .js .hero__logo img { clip-path: inset(0 100% 0 0); transform: scale(1.06); transform-origin: left center; transition: clip-path 1500ms var(--ease-io), transform 2000ms var(--ease-out); }
-  .js .hero.in .hero__logo img { clip-path: inset(0 0 0 0); transform: none; }
   .js .hero h1 .ch { display: inline-block; transform: translateY(115%) rotate(8deg); transform-origin: left bottom; transition: transform 1100ms var(--ease-out); transition-delay: calc(var(--c) * 38ms); }
   .js .hero.in h1 .ch { transform: none; }
   .js .split .wd { display: inline-block; overflow: hidden; vertical-align: top; padding-top: .14em; margin-top: -.14em; }
@@ -328,7 +325,7 @@ p { margin: 0; }
   .bar.is-solid .brand img { height: 32px; }
   .bar .btn { height: 42px; padding: 0 18px; }
   .hero__text { padding-bottom: 40px; }
-  .hero__logo img { width: 100%; }
+  .hero h1 { font-size: 15.5vw; }
   .hero__sub { grid-template-columns: 1fr; margin-top: 24px; }
   .hero__facts { margin-top: 28px; gap: 10px 24px; font-size: .9375rem; }
   .hero__pic { height: 62svh; }
@@ -369,7 +366,7 @@ p { margin: 0; }
   <!-- PORTADA -->
   <section class="hero" id="inicio" aria-labelledby="t-hero">
     <div class="hero__text">
-      <h1 id="t-hero" class="hero__logo"><img src="img/logo-oscuro.png" width="1435" height="363" alt="Bar Cafetería El Rincón de Marinela"></h1>
+      <h1 id="t-hero"><span class="ln"><span>El Rincón</span></span><span class="ln"><span>de Marinela</span></span></h1>
       <div class="hero__sub">
         <p class="rise" style="--i:2">Bar cafetería en Mota del Cuervo. Cocina casera con esencia: desayunos, comidas, meriendas y cenas.</p>
         <div class="hero__cta rise" style="--i:3">
