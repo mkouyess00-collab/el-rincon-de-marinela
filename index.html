@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Rincón de Marinela · Bar Cafetería en Mota del Cuervo</title>
+<meta name="description" content="Bar cafetería en Mota del Cuervo (Cuenca). Cocina casera con esencia: desayunos, comidas, meriendas y cenas. Burgers de autor, raciones para compartir y tartas artesanas.">
+<meta name="theme-color" content="#f2ebdf">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f2ebdf;
+  --paper: #e8dccb;
+  --espresso: #22170f;
+  --espresso-2: #2f2118;
+  --brown: #4b3528;
+  --sage: #3e5c50;
+  --sage-2: #35503f;
+  --red: #c8282f;
+  --red-strong: #a91f25;
+  --ink: #1d1410;
+  --ink-soft: #5a4639;
+  --on-dark: #f2ebdf;
+  --on-dark-soft: #cdbfae;
+
+  --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --text: "Manrope", system-ui, sans-serif;
+
+  --s-small: 0.9375rem;
+  --s-body: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
+  --s-lead: clamp(1.5rem, 1.1rem + 1.3vw, 2.25rem);
+  --s-head: clamp(3.25rem, 1.6rem + 6.4vw, 8.5rem);
+  --s-mega: clamp(4.5rem, 1rem + 12vw, 15rem);
+
+  --m: clamp(16px, 3.2vw, 48px);
+  --gap: clamp(120px, 13vw, 200px);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --ease-io: cubic-bezier(.76,0,.24,1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--cream); color: var(--ink);
+  font-family: var(--text); font-size: var(--s-body); line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img, iframe, video { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 400; text-transform: uppercase; line-height: .9; letter-spacing: -0.005em; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+::selection { background: var(--red); color: var(--cream); }
+.w { padding-inline: var(--m); max-width: 1680px; margin-inline: auto; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* botones */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6em;
+  height: 58px; padding: 0 30px; border: 0; border-radius: 999px;
+  background: var(--red); color: var(--cream); font: 700 1rem/1 var(--text);
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: transform 160ms var(--ease-out), background-color 220ms ease, color 220ms ease;
+}
+.btn:active { transform: scale(.96); }
+.btn--line { background: transparent; color: inherit; box-shadow: inset 0 0 0 2px currentColor; }
+.btn--cream { background: var(--cream); color: var(--ink); }
+.btn svg { width: 18px; height: 18px; transition: transform 220ms var(--ease-out); }
+.link { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .25em; text-decoration-thickness: 2px; transition: text-decoration-color 200ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { background: var(--red-strong); }
+  .btn:hover svg { transform: translateX(4px); }
+  .btn--line:hover { background: var(--ink); color: var(--cream); box-shadow: none; }
+  .dark .btn--line:hover { background: var(--cream); color: var(--ink); }
+  .btn--cream:hover { background: var(--paper); }
+  .link:hover { text-decoration-color: currentColor; }
+}
+
+/* ---------- barra de progreso ---------- */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: var(--red); transform-origin: left; transform: scaleX(0); z-index: 60; pointer-events: none; }
+.ticker.ticker--sage { background: var(--cream); color: var(--sage); }
+.ticker.ticker--sage .ticker__row span:nth-child(even) { color: var(--red); }
+.split .wd { white-space: nowrap; }
+
+/* ---------- barra superior ---------- */
+.bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 16px var(--m); color: var(--ink); background: var(--cream);
+  transition: background-color 300ms ease, transform 400ms var(--ease-out), padding 300ms ease;
+}
+.bar.is-solid { padding-block: 10px; }
+.bar.is-hidden { transform: translateY(-100%); }
+.brand { display: flex; flex-direction: column; text-decoration: none; line-height: 1; }
+.brand b { font-family: var(--display); font-weight: 400; font-size: 1.75rem; text-transform: uppercase; }
+.brand span { font-size: .875rem; font-weight: 500; margin-top: 3px; }
+.bar nav { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 36px); font-weight: 500; }
+.bar nav a:not(.btn) { text-decoration: none; }
+.bar .btn { height: 46px; padding: 0 22px; }
+
+/* ---------- portada ---------- */
+.hero { display: grid; grid-template-columns: 7fr 5fr; min-height: 100svh; padding-top: 78px; }
+.hero__pic { height: calc(100svh - 78px); }
+.hero__text { display: flex; flex-direction: column; justify-content: flex-end; padding: 48px var(--m) clamp(40px, 6vh, 72px); }
+.hero h1 { font-size: clamp(4rem, 0.5rem + 8.4vw, 11rem); line-height: .9; }
+.hero h1 .ln { display: block; overflow: hidden; padding-top: .16em; margin-top: -.12em; white-space: nowrap; }
+.hero h1 .ln > span { display: block; }
+.hero h1 .ln:last-child { color: var(--sage); }
+.hero__sub { margin-top: 36px; display: grid; grid-template-columns: minmax(0, 30ch) auto; gap: 24px 48px; align-items: end; }
+.hero__sub p { font-size: clamp(1.125rem, 1rem + .4vw, 1.375rem); line-height: 1.45; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero__facts { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 12px 40px; font-weight: 500; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #2f9e5b; margin-right: 10px; vertical-align: 1px; }
+.is-closed .dot { background: var(--red); }
+@media (prefers-reduced-motion: no-preference) { .dot { animation: pulse 2.2s ease-in-out infinite; } }
+@keyframes pulse { 50% { opacity: .35; } }
+.hero__pic { position: relative; overflow: hidden; background: var(--espresso); }
+.hero__pic img { width: 100%; height: 100%; object-fit: cover; }
+.hero__pic figcaption { position: absolute; left: 24px; bottom: 20px; color: var(--cream); font-size: var(--s-small); font-weight: 500; }
+.hero__pic::after { content: ""; position: absolute; inset: auto 0 0 0; height: 30%; background: linear-gradient(transparent, rgba(0,0,0,.45)); pointer-events: none; }
+
+/* ---------- banda de nombres ---------- */
+.ticker { background: var(--red); color: var(--cream); overflow: hidden; padding-block: clamp(18px, 2.4vw, 34px); }
+.ticker__row { display: flex; width: max-content; font-family: var(--display); text-transform: uppercase; font-size: clamp(3rem, 1rem + 7vw, 9rem); line-height: 1; white-space: nowrap; will-change: transform; }
+.ticker__row span { padding-right: .45em; }
+.ticker__row span::after { content: "\2726"; font-size: .4em; vertical-align: .55em; margin-left: .45em; }
+.ticker__row span:nth-child(even) { color: var(--espresso); }
+
+/* ---------- burgers ---------- */
+.dark { background: var(--espresso); color: var(--on-dark); }
+.burgers { padding-block: var(--gap); }
+.burgers__head { display: grid; grid-template-columns: 7fr 5fr; gap: 48px; align-items: end; margin-bottom: clamp(56px, 7vw, 112px); }
+.burgers h2 { font-size: var(--s-head); }
+.burgers__head p { color: var(--on-dark-soft); max-width: 42ch; }
+.burgers__grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 6vw, 120px); }
+.stage { position: sticky; top: calc(50svh - min(36vw, 640px) / 2 + 30px); width: 100%; max-width: 480px; aspect-ratio: 3/4; overflow: hidden; border-radius: 4px; background: var(--espresso-2); }
+.stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.08); transition: opacity 700ms ease, transform 1400ms var(--ease-out); }
+.stage img.on { opacity: 1; transform: scale(1); }
+.stage__count { position: absolute; right: 20px; bottom: 16px; z-index: 2; font-family: var(--display); font-size: 2rem; color: var(--cream); }
+.blist { list-style: none; margin: 0; padding: 0; }
+.burger { min-height: 64svh; display: flex; flex-direction: column; justify-content: center; padding-block: 40px; opacity: .45; transition: opacity 500ms ease; }
+.burger.is-active { opacity: 1; }
+.burger h3 { font-size: clamp(3rem, 1.4rem + 5vw, 7rem); }
+.burger__tag { align-self: flex-start; margin-top: 18px; font-weight: 700; color: var(--red); background: var(--cream); padding: 6px 14px; border-radius: 999px; font-size: var(--s-small); }
+.burger p { margin-top: 20px; max-width: 40ch; color: var(--on-dark-soft); font-size: 1.125rem; }
+.burger ul { margin: 22px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.burger li { background: var(--espresso-2); padding: 8px 14px; border-radius: 999px; font-size: var(--s-small); font-weight: 500; }
+.burger__pic { display: none; }
+.burgers__wide { margin-top: clamp(64px, 8vw, 128px); }
+.burgers__wide img { width: 100%; aspect-ratio: 21/9; object-fit: cover; border-radius: 4px; }
+.burgers__wide figcaption { margin-top: 16px; color: var(--on-dark-soft); }
+
+/* ---------- para picar ---------- */
+.picar { padding-block: var(--gap); }
+.picar__head { display: grid; grid-template-columns: 8fr 4fr; gap: 48px; align-items: end; margin-bottom: clamp(48px, 6vw, 96px); }
+.picar h2 { font-size: var(--s-head); }
+.picar__head p { max-width: 36ch; }
+.mosaic { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: clamp(16px, 2vw, 32px); row-gap: clamp(48px, 6vw, 96px); align-items: start; }
+.dish { margin: 0; }
+.dish__img { overflow: hidden; border-radius: 4px; background: var(--paper); }
+.dish__img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 1200ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .dish:hover .dish__img img { transform: scale(1.1); } }
+.dish figcaption { margin-top: 18px; display: grid; gap: 6px; }
+.dish figcaption b { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(1.75rem, 1.2rem + 1.3vw, 2.75rem); line-height: 1; }
+.dish figcaption span { color: var(--ink-soft); max-width: 40ch; }
+.d1 { grid-column: 1 / span 7; } .d1 .dish__img { aspect-ratio: 4/3.6; }
+.d2 { grid-column: 9 / span 4; margin-top: 18vw; } .d2 .dish__img { aspect-ratio: 3/4; }
+.d3 { grid-column: 1 / span 4; } .d3 .dish__img { aspect-ratio: 3/4; }
+.d4 { grid-column: 6 / span 7; margin-top: 12vw; } .d4 .dish__img { aspect-ratio: 4/3; }
+.d5 { grid-column: 2 / span 5; } .d5 .dish__img { aspect-ratio: 5/4; }
+.d6 { grid-column: 8 / span 5; margin-top: 10vw; } .d6 .dish__img { aspect-ratio: 4/5; }
+.picar__note { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; background: var(--paper); padding: clamp(28px, 4vw, 56px); border-radius: 4px; }
+.picar__note p { font-size: var(--s-lead); line-height: 1.2; max-width: 30ch; font-weight: 500; }
+
+/* ---------- la carta completa ---------- */
+.carta-full { background: var(--paper); padding-block: var(--gap); }
+.cf__head { display: grid; grid-template-columns: 7fr 5fr; gap: 48px; align-items: end; margin-bottom: clamp(40px, 5vw, 72px); }
+.carta-full h2 { font-size: var(--s-head); }
+.cf__head p { max-width: 40ch; }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(40px, 5vw, 72px); position: sticky; top: 70px; z-index: 5; background: var(--paper); padding-block: 12px; }
+.tabs button { height: 50px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--cream); color: var(--ink); font: 700 1rem/1 var(--text); cursor: pointer; transition: background-color 200ms ease, color 200ms ease, transform 140ms var(--ease-out); }
+.tabs button:active { transform: scale(.96); }
+.tabs button[aria-selected="true"] { background: var(--espresso); color: var(--cream); }
+@media (hover: hover) and (pointer: fine) { .tabs button[aria-selected="false"]:hover { background: var(--red); color: var(--cream); } }
+.panel__note { margin-bottom: 32px; font-weight: 500; color: var(--ink-soft); }
+.panel__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 5vw, 96px); align-items: start; }
+.grp h3 { margin: 0 0 20px; font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(1.75rem, 1.3rem + 1.2vw, 2.75rem); line-height: 1; color: var(--sage); }
+.grp ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.it__l { display: flex; align-items: baseline; gap: 12px; }
+.it__n { font-weight: 700; font-size: 1.125rem; display: flex; flex: 1; align-items: baseline; gap: 12px; }
+.it__n::after { content: ""; flex: 1; border-bottom: 2px dotted rgba(29,20,16,.25); transform: translateY(-4px); }
+.it__p { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.it p { margin-top: 4px; color: var(--ink-soft); max-width: 52ch; }
+@media (prefers-reduced-motion: no-preference) { .panel.show { animation: panelIn 500ms var(--ease-out); } }
+@keyframes panelIn { from { opacity: 0; transform: translateY(14px); } }
+@media (max-width: 760px) {
+  .cf__head, .panel__grid { grid-template-columns: 1fr; gap: 24px; }
+  .panel__grid { gap: 48px; }
+  .tabs { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(var(--m) * -1); padding-inline: var(--m); top: 62px; scrollbar-width: none; }
+  .tabs button { flex: none; height: 44px; padding: 0 18px; }
+}
+
+/* ---------- desayunos ---------- */
+.desayunos { background: var(--sage); color: var(--on-dark); padding-block: var(--gap); }
+.des__head { display: grid; grid-template-columns: 7fr 5fr; gap: 48px; align-items: end; margin-bottom: clamp(56px, 6vw, 96px); }
+.desayunos h2 { font-size: var(--s-head); }
+.des__head p { max-width: 40ch; color: #dfe6df; }
+.carta { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(40px, 4vw, 72px); align-items: start; }
+.carta__col { display: grid; gap: clamp(40px, 4vw, 64px); }
+.menu h3 { font-size: clamp(1.75rem, 1.3rem + 1.1vw, 2.5rem); margin-bottom: 18px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.menu h3 em { font-style: normal; font-family: var(--text); font-weight: 700; font-size: 1rem; background: var(--cream); color: var(--sage-2); padding: 5px 12px; border-radius: 999px; letter-spacing: 0; }
+.menu dl { margin: 0; display: grid; gap: 10px; }
+.menu dl div { display: flex; align-items: baseline; gap: 12px; }
+.menu dt { flex: 1; display: flex; align-items: baseline; gap: 12px; }
+.menu dt::after { content: ""; flex: 1; border-bottom: 2px dotted rgba(242,235,223,.35); transform: translateY(-4px); }
+.menu dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+.menu p { color: #dfe6df; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips span { background: var(--sage-2); padding: 8px 14px; border-radius: 999px; font-size: var(--s-small); font-weight: 500; }
+.carta__pic { overflow: hidden; border-radius: 4px; }
+.carta__pic img { width: 100%; height: 100%; object-fit: cover; }
+.carta__pic.tall { aspect-ratio: 3/4; }
+.carta__pic.sq { aspect-ratio: 1; }
+.carta__pic + .cap { margin-top: -40px; font-size: var(--s-small); color: #dfe6df; }
+
+/* ---------- el local ---------- */
+.local { padding-block: var(--gap); }
+.local__grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 5vw, 96px); align-items: start; }
+.local h2 { font-size: var(--s-head); }
+.local__title { margin-bottom: clamp(48px, 6vw, 96px); }
+.local__lead { margin-top: 0; font-size: var(--s-lead); line-height: 1.2; font-weight: 500; max-width: 22ch; }
+.local__copy { margin-top: 24px; max-width: 42ch; }
+.local__moments { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 8px; }
+.local__moments span { font-family: var(--display); text-transform: uppercase; font-size: 1.5rem; line-height: 1; padding: 12px 18px; background: var(--paper); border-radius: 999px; }
+.local__pics { display: grid; grid-template-columns: 7fr 5fr; gap: clamp(16px, 2vw, 28px); align-items: end; }
+.local__pics figure { margin: 0; overflow: hidden; border-radius: 4px; }
+.local__pics img { width: 100%; height: 100%; object-fit: cover; }
+.local__pics .a { aspect-ratio: 3/4.2; }
+.local__pics .b { aspect-ratio: 3/4; margin-bottom: 12vw; }
+.reviews { margin-top: var(--gap); display: grid; grid-template-columns: 4fr 8fr; gap: clamp(32px, 5vw, 96px); align-items: start; }
+.score { font-family: var(--display); font-size: var(--s-mega); line-height: .8; color: var(--red); }
+.score + p { margin-top: 16px; font-weight: 500; }
+.stars { color: var(--red); letter-spacing: 4px; font-size: 1.25rem; }
+.quotes { display: grid; gap: clamp(32px, 4vw, 56px); }
+.quotes blockquote { margin: 0; font-size: var(--s-lead); line-height: 1.22; font-weight: 500; max-width: 32ch; }
+.quotes blockquote:nth-child(2) { margin-left: auto; }
+.quotes cite { display: block; margin-top: 12px; font-style: normal; font-size: var(--s-small); font-weight: 500; color: var(--ink-soft); }
+
+/* ---------- visítanos ---------- */
+.visit { padding-block: var(--gap); }
+.visit h2 { font-size: var(--s-head); margin-bottom: clamp(48px, 6vw, 96px); }
+.visit__grid { display: grid; grid-template-columns: 7fr 5fr; gap: clamp(32px, 4vw, 72px); }
+.map { position: relative; min-height: 620px; border-radius: 4px; overflow: hidden; background: var(--espresso-2); }
+.map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: saturate(.85); }
+.visit__side { display: grid; gap: 40px; align-content: start; }
+.visit__side h3 { font-size: 2rem; margin-bottom: 12px; }
+.visit__side address { font-style: normal; font-size: 1.25rem; line-height: 1.4; }
+.hours { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.hours th, .hours td { padding: 11px 0; font-weight: 400; text-align: left; border-bottom: 1px solid rgba(242,235,223,.14); }
+.hours td { text-align: right; }
+.hours tr.today th, .hours tr.today td { color: var(--cream); font-weight: 700; }
+.hours tr.today th::after { content: " · hoy"; color: var(--red); }
+.hours tr:not(.today) { color: var(--on-dark-soft); }
+.visit__btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.visit__fachada { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
+.visit__fachada img { border-radius: 4px; aspect-ratio: 5/4; object-fit: cover; width: 100%; }
+.visit__fachada p { color: var(--on-dark-soft); }
+
+/* ---------- pie ---------- */
+.foot { padding-block: clamp(80px, 9vw, 140px) 32px; overflow: hidden; }
+.foot__mark { font-family: var(--display); text-transform: uppercase; line-height: .82; font-size: clamp(4rem, 1rem + 15.5vw, 19rem); }
+.foot__mark span { display: block; white-space: nowrap; }
+.foot__mark span:nth-child(2) { color: var(--sage); }
+.foot__row { margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.foot__row h3 { font-size: 1.375rem; margin-bottom: 10px; }
+.foot__row ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.foot__row a { text-decoration: none; }
+.foot__end { margin-top: 64px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: var(--s-small); color: var(--ink-soft); }
+
+/* ---------- movimiento ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .rise { opacity: 0; transform: translateY(32px); transition: opacity 900ms var(--ease-out), transform 1000ms var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
+  .js .rise.in { opacity: 1; transform: none; }
+  .js .hero h1 .ch { display: inline-block; transform: translateY(115%) rotate(8deg); transform-origin: left bottom; transition: transform 1100ms var(--ease-out); transition-delay: calc(var(--c) * 38ms); }
+  .js .hero.in h1 .ch { transform: none; }
+  .js .split .wd { display: inline-block; overflow: hidden; vertical-align: top; padding-top: .14em; margin-top: -.14em; }
+  .js .split .wd > span { display: inline-block; transform: translateY(105%); transition: transform 1000ms var(--ease-out); transition-delay: calc(var(--w) * 70ms); }
+  .js .split.in .wd > span { transform: none; }
+  .js .it { opacity: 0; transform: translateY(18px); transition: opacity 600ms var(--ease-out), transform 700ms var(--ease-out); transition-delay: calc(var(--d, 0) * 35ms); }
+  .js .panel.on .it { opacity: 1; transform: none; }
+  .js .stage img { clip-path: inset(0 0 0 100%); opacity: 1; transition: clip-path 900ms var(--ease-io), transform 1600ms var(--ease-out); }
+  .js .stage img.on { clip-path: inset(0 0 0 0); z-index: 1; }
+  .js .stage img.was { clip-path: inset(0 0 0 0); z-index: 0; }
+  .hero__pic img { animation: kenburns 22s ease-in-out 1.6s infinite alternate; }
+  @keyframes kenburns { from { scale: 1; } to { scale: 1.1; } }
+  .tilt { transition: transform 600ms var(--ease-out); will-change: transform; }
+  .mag { transition: transform 400ms var(--ease-out), background-color 220ms ease, color 220ms ease; }
+  .js .hero__pic { clip-path: inset(100% 0 0 0); transition: clip-path 1300ms var(--ease-io) 200ms; }
+  .js .hero__pic img { transform: scale(1.2); transition: transform 2200ms var(--ease-out) 200ms; }
+  .js .hero.in .hero__pic { clip-path: inset(0 0 0 0); }
+  .js .hero.in .hero__pic img { transform: scale(1.02); }
+  .js .reveal > img { clip-path: inset(0 0 100% 0); transition: clip-path 1300ms var(--ease-io), transform 200ms linear; }
+  .js .reveal.in > img { clip-path: inset(0 0 0 0); }
+  .js .foot__mark span { transform: translateY(40%); opacity: 0; transition: transform 1200ms var(--ease-out), opacity 900ms ease; }
+  .js .foot__mark span:nth-child(2) { transition-delay: 120ms; }
+  .js .foot__mark.in span { transform: none; opacity: 1; }
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 1080px) {
+  .bar nav a.hide { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero__text { padding-top: 56px; min-height: 0; }
+  .hero__pic { height: 70svh; }
+  .carta { grid-template-columns: 1fr 1fr; }
+  .carta__col:last-child { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- teléfono ---------- */
+@media (max-width: 760px) {
+  .brand b { font-size: 1.5rem; }
+  .bar .btn { height: 42px; padding: 0 18px; }
+  .hero__text { padding-bottom: 40px; }
+  .hero h1 { font-size: 15.5vw; }
+  .hero__sub { grid-template-columns: 1fr; margin-top: 24px; }
+  .hero__facts { margin-top: 28px; gap: 10px 24px; font-size: .9375rem; }
+  .hero__pic { height: 62svh; }
+  .burgers__head, .picar__head, .des__head, .local__grid, .reviews, .visit__grid { grid-template-columns: 1fr; gap: 24px; }
+  .burgers__grid { grid-template-columns: 1fr; }
+  .stage { display: none; }
+  .burger { min-height: 0; opacity: 1; padding-block: 0 72px; }
+  .burger__pic { display: block; aspect-ratio: 3/4; max-width: 420px; overflow: hidden; border-radius: 4px; margin-bottom: 24px; }
+  .burger__pic img { width: 100%; height: 100%; object-fit: cover; }
+  .mosaic { grid-template-columns: 1fr; row-gap: 56px; }
+  .mosaic > * { grid-column: 1 / -1 !important; margin-top: 0 !important; }
+  .d2 .dish__img, .d3 .dish__img, .d6 .dish__img { aspect-ratio: 4/4.4; }
+  .carta, .carta__col:last-child { grid-template-columns: 1fr; }
+  .local__pics .b { margin-bottom: 0; }
+  .quotes blockquote:nth-child(2) { margin-left: 0; }
+  .map { min-height: 420px; }
+  .visit__fachada { grid-template-columns: 1fr; }
+  .foot__row { grid-template-columns: 1fr 1fr; }
+  .foot__mark { font-size: 17vw; }
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="bar" id="bar">
+  <a class="brand" href="#inicio" aria-label="El Rincón de Marinela, inicio"><b>El Rincón</b><span>de Marinela</span></a>
+  <nav aria-label="Principal">
+    <a class="link hide" href="#burgers">Burgers</a>
+    <a class="link hide" href="#carta">Carta</a>
+    <a class="link hide" href="#desayunos">Desayunos</a>
+    <a class="link hide" href="#visitanos">Visítanos</a>
+    <a class="btn" href="tel:+34600278770">Llamar</a>
+  </nav>
+</header>
+
+<main>
+  <!-- PORTADA -->
+  <section class="hero" id="inicio" aria-labelledby="t-hero">
+    <div class="hero__text">
+      <h1 id="t-hero"><span class="ln"><span>El Rincón</span></span><span class="ln"><span>de Marinela</span></span></h1>
+      <div class="hero__sub">
+        <p class="rise" style="--i:2">Bar cafetería en Mota del Cuervo. Cocina casera con esencia: desayunos, comidas, meriendas y cenas.</p>
+        <div class="hero__cta rise" style="--i:3">
+          <a class="btn" href="#carta">Ver la carta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--line" href="#visitanos">Cómo llegar</a>
+        </div>
+      </div>
+      <div class="hero__facts rise" style="--i:4">
+        <span id="nowLine"><i class="dot"></i>Abrimos todos los días salvo martes</span>
+        <span>4,2 en Google · 48 opiniones</span>
+        <span>C/ Fray Alonso Cano, 16</span>
+      </div>
+    </div>
+    <figure class="hero__pic" style="margin:0">
+      <img src="img/barra.jpg" width="1200" height="1600" alt="Interior de El Rincón de Marinela: barra negra con taburetes altos, sofá curvo y lámparas de cuerda en el techo">
+      <figcaption>La barra, en C/ Fray Alonso Cano</figcaption>
+    </figure>
+  </section>
+
+  <!-- BANDA -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__row" data-dir="-1">
+      <span>La Viciosa</span><span>Crispy Royale</span><span>Red Burguer</span><span>Black Golden</span><span>Crunchy Combo</span><span>Nachos</span><span>La Viciosa</span><span>Crispy Royale</span><span>Red Burguer</span><span>Black Golden</span>
+    </div>
+  </div>
+
+  <!-- BURGERS -->
+  <section class="burgers dark" id="burgers" aria-labelledby="t-burgers">
+    <div class="w">
+      <div class="burgers__head">
+        <h2 id="t-burgers" class="split">Burgers de la casa</h2>
+        <p class="rise" style="--i:1">Quince burgers en carta, de la clásica a las smash, todas con patatas. Y cada mes, una burger nueva: pregunta cuál toca.</p>
+      </div>
+      <div class="burgers__grid">
+        <div class="stage" aria-hidden="true">
+          <img class="on" src="img/viciosa.jpg" alt="">
+          <img src="img/crispy.jpg" alt="">
+          <img src="img/red-burguer.jpg" alt="">
+          <img src="img/golden.jpg" alt="">
+          <span class="stage__count" id="stageCount">1/4</span>
+        </div>
+        <ol class="blist">
+          <li class="burger is-active" data-i="0">
+            <div class="burger__pic"><img src="img/viciosa.jpg" alt="La Viciosa con patatas fritas sobre pizarra" loading="lazy"></div>
+            <h3>La Viciosa</h3>
+            <span class="burger__tag">Burger del mes</span>
+            <p>Una auténtica locura que vas a querer repetir: dulce, crujiente y muy, muy viciosa.</p>
+            <ul><li>Salsa miel mostaza</li><li>Carne de vacuno</li><li>Cebolla caramelizada</li><li>Cheddar</li><li>Bacon crujiente</li><li>Lechuga</li></ul>
+          </li>
+          <li class="burger" data-i="1">
+            <div class="burger__pic"><img src="img/crispy.jpg" alt="Crispy Royale con patatas gajo" loading="lazy"></div>
+            <h3>Crispy Royale</h3>
+            <span class="burger__tag">12,00 €</span>
+            <p>Pollo crujiente Kentucky, salsa rosa, mermelada de bacon, cheddar, bacon, patatas paja, mango habanero y sésamo.</p>
+          </li>
+          <li class="burger" data-i="2">
+            <div class="burger__pic"><img src="img/red-burguer.jpg" alt="Red Burguer de pan rojo con cheddar" loading="lazy"></div>
+            <h3>Red Burguer</h3>
+            <span class="burger__tag">La Pecadora · 12,00 €</span>
+            <p>Vacuno 200 g en brioche rojo, mermelada de cecina, cheddar, bacon, salsa cheddar y oro comestible.</p>
+          </li>
+          <li class="burger" data-i="3">
+            <div class="burger__pic"><img src="img/golden.jpg" alt="Golden Burger de pan negro con oro comestible" loading="lazy"></div>
+            <h3>Black Golden</h3>
+            <span class="burger__tag">13,00 €</span>
+            <p>Vacuno 200 g en brioche negro con oro comestible, salsa Emmy, doble cheddar, bacon, mango habanero y salsa cheddar.</p>
+          </li>
+        </ol>
+      </div>
+      <figure class="burgers__wide rise reveal" style="margin-left:0;margin-right:0"><img src="img/burgers.jpg" alt="Cuatro hamburguesas de la casa con patatas fritas sobre la mesa" loading="lazy">
+        <figcaption>Todas en la misma mesa: así se pide en El Rincón.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- PARA PICAR -->
+  <section class="picar" id="picar" aria-labelledby="t-picar">
+    <div class="w">
+      <div class="picar__head">
+        <h2 id="t-picar" class="split">Para picar y compartir</h2>
+        <p class="rise" style="--i:1">Raciones generosas para el centro de la mesa, de las que se piden "una más". Y una caña bien fría o un tinto de verano de la casa al lado.</p>
+      </div>
+      <div class="mosaic">
+        <figure class="dish d1 rise"><div class="dish__img reveal"><img src="img/nachos.jpg" alt="Nachos con cheddar fundido, guacamole y cebolla crujiente" loading="lazy" data-par="0.06"></div>
+          <figcaption><b>Nachos · 10,50 €</b><span>Salsa secreta, cheddar fundido, cebolla crujiente y guacamole cremoso.</span></figcaption></figure>
+        <figure class="dish d2 rise"><div class="dish__img reveal"><img src="img/crunchy.jpg" alt="Crunchy Combo: crocanti, alitas grill y solomillo Kentucky con tres salsas" loading="lazy"></div>
+          <figcaption><b>Crunchy Combo · 13 €</b><span>Crocanti, alitas grill y solomillo Kentucky con salsa koreana, BBQ e india. Para dipear y repetir.</span></figcaption></figure>
+        <figure class="dish d3 rise"><div class="dish__img reveal"><img src="img/tosta-gambon.jpg" alt="Tosta de gambón con alioli" loading="lazy"></div>
+          <figcaption><b>Tosta de gambón</b><span>Con alioli. Novedad de la casa, junto al ajillo de gambas para mojar pan.</span></figcaption></figure>
+        <figure class="dish d4 rise"><div class="dish__img reveal"><img src="img/fritura.jpg" alt="Plato de alitas, rollitos, croquetas y patatas fritas con salsa" loading="lazy" data-par="0.05"></div>
+          <figcaption><b>Combo El Rincón · 15 €</b><span>Nuggets, alitas, tequeños, patatas y queso frito, con salsa para mojar.</span></figcaption></figure>
+        <figure class="dish d5 rise"><div class="dish__img reveal"><img src="img/oreja.jpg" alt="Oreja a la plancha con perejil sobre pizarra" loading="lazy"></div>
+          <figcaption><b>Oreja · 10,50 €</b><span>A la plancha, dorada, con ajo y perejil. De las que dan fama.</span></figcaption></figure>
+        <figure class="dish d6 rise"><div class="dish__img reveal"><img src="img/raciones.jpg" alt="Raciones de croquetas, queso y oreja sobre pizarras" loading="lazy"></div>
+          <figcaption><b>Croquetas y raciones</b><span>Croquetas variadas 10 €, queso frito 11,50 € y más de treinta raciones en carta.</span></figcaption></figure>
+        <div class="picar__note rise">
+          <p>Bocadillos, tostas, ensaladas, pizzas y menú infantil: todo en la carta.</p>
+          <a class="btn" href="#carta">Ver la carta completa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA CARTA COMPLETA -->
+  <section class="carta-full" id="carta" aria-labelledby="t-carta">
+    <div class="w">
+      <div class="cf__head">
+        <h2 id="t-carta" class="split">La carta</h2>
+        <p class="rise" style="--i:1">Comidas y cenas: burgers, raciones, bocadillos, tostas, ensaladas, pizzas y menú infantil. Elige una sección.</p>
+      </div>
+      <div class="tabs rise" role="tablist" aria-label="Secciones de la carta"><button role="tab" id="tab-burgers" aria-controls="p-burgers" aria-selected="true" tabindex="0">Burgers</button><button role="tab" id="tab-raciones" aria-controls="p-raciones" aria-selected="false" tabindex="-1">Raciones</button><button role="tab" id="tab-bocadillos" aria-controls="p-bocadillos" aria-selected="false" tabindex="-1">Bocadillos y tostas</button><button role="tab" id="tab-ensaladas" aria-controls="p-ensaladas" aria-selected="false" tabindex="-1">Ensaladas y sándwiches</button><button role="tab" id="tab-pizzas" aria-controls="p-pizzas" aria-selected="false" tabindex="-1">Pizzas y perritos</button><button role="tab" id="tab-infantil" aria-controls="p-infantil" aria-selected="false" tabindex="-1">Menú infantil</button></div>
+      <div class="panels"><div class="panel" role="tabpanel" id="p-burgers" aria-labelledby="tab-burgers"><p class="panel__note">Todas con patatas. Ingrediente extra 0,50 € · huevo frito 1,00 €.</p><div class="panel__grid"><div class="grp"><h3>Vacuno</h3><ul><li class="it"><div class="it__l"><span class="it__n">La de siempre</span><span class="it__p">8,00 €</span></div><p>Vacuno 180 g, lechuga, tomate y mayonesa</p></li><li class="it"><div class="it__l"><span class="it__n">La Canalla</span><span class="it__p">9,00 €</span></div><p>Carne mechada a baja temperatura, lechuga, cheddar y salsa BBQ</p></li><li class="it"><div class="it__l"><span class="it__n">Deluxe</span><span class="it__p">9,50 €</span></div><p>Vacuno 180 g, salsa de pepinillo, lechuga, tomate, bacon crujiente, cheddar, huevo y cebolla crujiente</p></li><li class="it"><div class="it__l"><span class="it__n">La Setera</span><span class="it__p">9,00 €</span></div><p>Vacuno 180 g, bacon, queso tierno, cebolla caramelizada y salsa de setas</p></li><li class="it"><div class="it__l"><span class="it__n">La Manchega 2.0</span><span class="it__p">10,00 €</span></div><p>Vacuno 180 g, queso curado, mermelada de bacon, jamón ibérico y panceta ibérica</p></li><li class="it"><div class="it__l"><span class="it__n">Um Buae Moteña</span><span class="it__p">10,50 €</span></div><p>Buey 220 g, lechuga, queso de cabra, cebolla caramelizada y salsa de pepinillos</p></li><li class="it"><div class="it__l"><span class="it__n">La Pecadora</span><span class="it__p">12,00 €</span></div><p>Vacuno 200 g, brioche rojo, mermelada de cecina, cheddar, bacon, salsa cheddar y oro comestible</p></li><li class="it"><div class="it__l"><span class="it__n">Black Golden</span><span class="it__p">13,00 €</span></div><p>Vacuno 200 g, brioche negro, salsa Emmy, doble cheddar, bacon, salsa de mango habanero, salsa cheddar y oro comestible</p></li></ul></div><div class="grp"><h3>Smash</h3><ul><li class="it"><div class="it__l"><span class="it__n">Clasic Smash</span><span class="it__p">8,00 €</span></div><p>Smash de vacuno 100 g, doble cheddar y bacon crispy</p></li><li class="it"><div class="it__l"><span class="it__n">Lotus Extreme</span><span class="it__p">10,00 €</span></div><p>Doble smash 100 g, doble cheddar, bacon crispy, crema crumble de Lotus y galleta</p></li><li class="it"><div class="it__l"><span class="it__n">Volcán de queso</span><span class="it__p">10,00 €</span></div><p>Doble smash 100 g, cheddar, bacon crujiente, volcán de queso y cebolla crujiente</p></li><li class="it"><div class="it__l"><span class="it__n">La Trufada</span><span class="it__p">10,00 €</span></div><p>Doble smash 120 g, cheddar, panceta ibérica y salsa cremosa de trufa</p></li><li class="it"><div class="it__l"><span class="it__n">Pistacho</span><span class="it__p">10,00 €</span></div><p>Doble smash 100 g, doble cheddar, bacon y crema de pistacho</p></li></ul></div><div class="grp"><h3>Pollo</h3><ul><li class="it"><div class="it__l"><span class="it__n">Crispy Chicken</span><span class="it__p">10,00 €</span></div><p>Pollo crujiente, lechuga, tomate, mayonesa, queso, bacon y cebolla crujiente</p></li><li class="it"><div class="it__l"><span class="it__n">Crispy Royale</span><span class="it__p">12,00 €</span></div><p>Pollo crujiente Kentucky, salsa rosa, mermelada de bacon, cheddar, bacon, patatas paja, salsa de mango habanero, salsa cheddar y sésamo</p></li></ul></div></div></div><div class="panel" role="tabpanel" id="p-raciones" aria-labelledby="tab-raciones" hidden><p class="panel__note">Para el centro de la mesa.</p><div class="panel__grid"><div class="grp"><h3>Las de toda la vida</h3><ul><li class="it"><div class="it__l"><span class="it__n">Pincho moruno</span><span class="it__p">2,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Croquetas variadas</span><span class="it__p">10,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Tabla de quesos</span><span class="it__p">14,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Jamón de bodega</span><span class="it__p">14,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Torreznos</span><span class="it__p">11,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Calamares nacionales</span><span class="it__p">15,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Oreja</span><span class="it__p">10,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Alitas</span><span class="it__p">10,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Lomo de orza</span><span class="it__p">11,00 €</span></div><p>Novedad</p></li><li class="it"><div class="it__l"><span class="it__n">Revuelto de ajetes y gambas</span><span class="it__p">11,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Huevos rotos</span><span class="it__p">10,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Sepia a la plancha</span><span class="it__p">12,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Rabas</span><span class="it__p">13,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Pulpo</span><span class="it__p">14,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Secreto</span><span class="it__p">9,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Muslo de pollo deshuesado</span><span class="it__p">8,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Rejos fritos</span><span class="it__p">13,00 €</span></div></li></ul></div><div class="grp"><h3>Para los amantes del Rincón</h3><ul><li class="it"><div class="it__l"><span class="it__n">Crunchy Combo</span><span class="it__p">13,00 €</span></div><p>Crocanti, alitas grill, solomillo Kentucky y 3 salsas</p></li><li class="it"><div class="it__l"><span class="it__n">Combo El Rincón</span><span class="it__p">15,00 €</span></div><p>Nuggets, alitas, tequeños, patatas y queso frito</p></li><li class="it"><div class="it__l"><span class="it__n">Cachopo crujiente</span><span class="it__p">9,00 €</span></div><p>Novedad</p></li><li class="it"><div class="it__l"><span class="it__n">Fingers de pollo</span><span class="it__p">9,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Cono de pollo Kentucky</span><span class="it__p">10,50 €</span></div><p>Novedad</p></li><li class="it"><div class="it__l"><span class="it__n">Tequeños</span><span class="it__p">9,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Tequeños infernales</span><span class="it__p">10,00 €</span></div><p>Con un ligero toque picante</p></li><li class="it"><div class="it__l"><span class="it__n">Queso frito</span><span class="it__p">11,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Salchipapas</span><span class="it__p">8,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Patatas fritas</span><span class="it__p">6,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Patatas bravas</span><span class="it__p">7,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Patatas rancheras</span><span class="it__p">9,50 €</span></div><p>Bacon crujiente, queso fundido y salsa ranchera</p></li><li class="it"><div class="it__l"><span class="it__n">Patatas cochinas</span><span class="it__p">10,50 €</span></div><p>Carne mechada a baja temperatura, BBQ y queso</p></li><li class="it"><div class="it__l"><span class="it__n">Nachos</span><span class="it__p">10,50 €</span></div><p>Salsa secreta, cheddar, cebolla crujiente y guacamole</p></li></ul></div></div></div><div class="panel" role="tabpanel" id="p-bocadillos" aria-labelledby="tab-bocadillos" hidden><p class="panel__note">Montados: 2 € menos de lo que vale el bocadillo.</p><div class="panel__grid"><div class="grp"><h3>Bocadillos</h3><ul><li class="it"><div class="it__l"><span class="it__n">Bacon y queso</span><span class="it__p">5,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Chorizo</span><span class="it__p">5,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Jamón a la plancha con tomate y queso</span><span class="it__p">5,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Lomo, tomate y queso</span><span class="it__p">5,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Oreja</span><span class="it__p">6,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Serranito</span><span class="it__p">7,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">El Rinconcito</span><span class="it__p">7,00 €</span></div><p>Tortilla francesa, jamón a la plancha, rodajas de tomate y alioli</p></li><li class="it"><div class="it__l"><span class="it__n">Pulled pork ahumado</span><span class="it__p">7,50 €</span></div><p>Carne mechada a baja temperatura, BBQ, lechuga y pepinillo</p></li><li class="it"><div class="it__l"><span class="it__n">De la abuela</span><span class="it__p">7,50 €</span></div><p>Lechuga, tomate, atún, pechuga, bacon y huevo frito</p></li><li class="it"><div class="it__l"><span class="it__n">De la casa</span><span class="it__p">7,50 €</span></div><p>Lechuga, tomate, bacon, pechuga empanada y barbacoa</p></li><li class="it"><div class="it__l"><span class="it__n">Calamares</span><span class="it__p">9,50 €</span></div></li></ul></div><div class="grp"><h3>Tostas</h3><ul><li class="it"><div class="it__l"><span class="it__n">Caprese</span><span class="it__p">8,00 €</span></div><p>Tomate cherry, mozzarella y orégano</p></li><li class="it"><div class="it__l"><span class="it__n">Pimiento</span><span class="it__p">8,50 €</span></div><p>Mermelada de pimiento y queso de cabra</p></li><li class="it"><div class="it__l"><span class="it__n">Pollo</span><span class="it__p">8,50 €</span></div><p>Pechuga, brotes verdes, queso tierno y cebolla caramelizada</p></li><li class="it"><div class="it__l"><span class="it__n">Tomate y boquerón</span><span class="it__p">8,50 €</span></div><p>Boquerones, tomate, ajo picado y perejil</p></li><li class="it"><div class="it__l"><span class="it__n">Huevos revueltos con jamón y tomate</span><span class="it__p">9,00 €</span></div><p>Jamón serrano, huevo, tomate, pimienta negra y brotes verdes</p></li><li class="it"><div class="it__l"><span class="it__n">Salmón</span><span class="it__p">9,50 €</span></div><p>Salmón ahumado y crema de queso azul</p></li><li class="it"><div class="it__l"><span class="it__n">Matrimonio</span><span class="it__p">9,50 €</span></div><p>Boquerón, anchoa y tomate · Novedad</p></li></ul></div></div></div><div class="panel" role="tabpanel" id="p-ensaladas" aria-labelledby="tab-ensaladas" hidden><div class="panel__grid"><div class="grp"><h3>Ensaladas</h3><ul><li class="it"><div class="it__l"><span class="it__n">Tomate y mozzarella</span><span class="it__p">8,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Tomate y ventresca</span><span class="it__p">9,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Mixta</span><span class="it__p">9,50 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">César</span><span class="it__p">10,00 €</span></div></li><li class="it"><div class="it__l"><span class="it__n">Mermelada de pimiento, brotes, queso de cabra y gambones</span><span class="it__p">11,00 €</span></div></li></ul></div><div class="grp"><h3>Sándwiches</h3><ul><li class="it"><div class="it__l"><span class="it__n">Mixto</span><span class="it__p">5,00 €</span></div><p>Jamón york y queso</p></li><li class="it"><div class="it__l"><span class="it__n">Especial</span><span class="it__p">7,50 €</span></div><p>Jamón york, mayonesa, lechuga, tomate, atún, pechuga y huevo duro</p></li><li class="it"><div class="it__l"><span class="it__n">Siciliana</span><span class="it__p">8,50 €</span></div><p>Mortadela siciliana, guacamole, tomate cherry, rúcula, pesto y pan rústico</p></li></ul></div></div></div><div class="panel" role="tabpanel" id="p-pizzas" aria-labelledby="tab-pizzas" hidden><div class="panel__grid"><div class="grp"><h3>Pizzas · 10,00 €</h3><ul><li class="it"><div class="it__l"><span class="it__n">Margarita</span></div></li><li class="it"><div class="it__l"><span class="it__n">Jamón york y queso</span></div></li><li class="it"><div class="it__l"><span class="it__n">Bacon y queso</span></div></li><li class="it"><div class="it__l"><span class="it__n">Barbacoa</span></div></li><li class="it"><div class="it__l"><span class="it__n">Pepperoni</span></div></li><li class="it"><div class="it__l"><span class="it__n">5 quesos</span></div></li><li class="it"><div class="it__l"><span class="it__n">Pan pizza</span><span class="it__p">4,50 €</span></div></li></ul></div><div class="grp"><h3>Perritos</h3><ul><li class="it"><div class="it__l"><span class="it__n">Perrito clásico</span><span class="it__p">5,50 €</span></div><p>Pan brioche, salchicha, queso fundido, mayonesa y ketchup</p></li><li class="it"><div class="it__l"><span class="it__n">Perrito especial</span><span class="it__p">6,50 €</span></div><p>Pan brioche, salchicha, queso, bacon, cebolla frita y patatas paja</p></li><li class="it"><div class="it__l"><span class="it__n">Perrito mexicano</span><span class="it__p">7,50 €</span></div><p>Pan brioche, salchicha, tomate, pepinillo, guacamole y nachos troceados</p></li></ul></div></div></div><div class="panel" role="tabpanel" id="p-infantil" aria-labelledby="tab-infantil" hidden><p class="panel__note">Todos con patatas y bebida incluidas, y regalo sorpresa.</p><div class="panel__grid"><div class="grp"><h3>Para los peques</h3><ul><li class="it"><div class="it__l"><span class="it__n">Cheeseburger</span><span class="it__p">6,50 €</span></div><p>Hamburguesa 100 g y queso</p></li><li class="it"><div class="it__l"><span class="it__n">Perrito</span><span class="it__p">5,50 €</span></div><p>Pan de perrito y salchicha</p></li><li class="it"><div class="it__l"><span class="it__n">Mixto</span><span class="it__p">5,00 €</span></div><p>Jamón york y queso</p></li></ul></div></div></div></div>
+    </div>
+  </section>
+
+  <div class="ticker ticker--sage" aria-hidden="true">
+    <div class="ticker__row" data-dir="1">
+      <span>Croissants</span><span>Tartas artesanas</span><span>Gofres</span><span>Crepes</span><span>Granizados</span><span>Tostadas</span>
+    </div>
+  </div>
+
+  <!-- DESAYUNOS Y MERIENDAS -->
+  <section class="desayunos" id="desayunos" aria-labelledby="t-des">
+    <div class="w">
+      <div class="des__head">
+        <h2 id="t-des" class="split">Desayunos y meriendas</h2>
+        <p class="rise" style="--i:1">Tostadas, croissants, crepes, gofres, tartas artesanas, cafés y zumos naturales. Desde las 9 de la mañana.</p>
+      </div>
+      <div class="carta">
+        <div class="carta__col">
+          <div class="menu rise"><h3>Tostadas</h3><dl>
+            <div><dt>Mermelada (fresa o melocotón)</dt><dd>1,80 €</dd></div>
+            <div><dt>Tomate</dt><dd>1,80 €</dd></div>
+            <div><dt>Aceite</dt><dd>1,80 €</dd></div>
+            <div><dt>Tomate y jamón</dt><dd>2,80 €</dd></div></dl></div>
+          <div class="menu rise"><h3>Croissant</h3><dl>
+            <div><dt>A la plancha</dt><dd>2,00 €</dd></div>
+            <div><dt>Pistacho</dt><dd>3,50 €</dd></div>
+            <div><dt>Lotus</dt><dd>3,50 €</dd></div>
+            <div><dt>Chocolate blanco</dt><dd>3,50 €</dd></div>
+            <div><dt>Kinder</dt><dd>3,50 €</dd></div>
+            <div><dt>Caramelo</dt><dd>3,50 €</dd></div>
+            <div><dt>Fresa</dt><dd>3,50 €</dd></div>
+            <div><dt>Chocolate</dt><dd>3,50 €</dd></div></dl></div>
+          <div class="carta__pic sq rise"><img src="img/croissants.jpg" alt="Tres croissants rellenos: caramelo, chocolate y pistacho" loading="lazy"></div>
+        </div>
+        <div class="carta__col">
+          <div class="menu rise"><h3>Crepes, tortitas y gofres <em>3,50 €</em></h3>
+            <div class="chips"><span>Pistacho</span><span>Lotus</span><span>Chocolate blanco</span><span>Kinder</span><span>Caramelo</span><span>Fresa</span><span>Chocolate</span></div></div>
+          <div class="menu rise"><h3>Tartas <em>5,50 €</em></h3>
+            <div class="chips"><span>Queso y chocolate blanco</span><span>De la abuela</span><span>Lotus</span><span>Pistacho</span><span>Oreo</span><span>Fresa</span><span>Mango y fruta de la pasión</span><span>Pantera Rosa</span><span>Tres chocolates</span></div>
+            <p style="margin-top:16px">Elaboración artesanal: la disponibilidad puede variar, pregunta en barra.</p></div>
+          <div class="menu rise"><h3>Miguelitos <em>2,50 €</em></h3><p>Y además magdalenas, dónuts y bollería variada.</p></div>
+          <div class="menu rise"><h3>Cafés e infusiones</h3><dl>
+            <div><dt>Solo</dt><dd>1,30 €</dd></div>
+            <div><dt>Americano</dt><dd>1,30 €</dd></div>
+            <div><dt>Cortado</dt><dd>1,30 €</dd></div>
+            <div><dt>Con leche</dt><dd>1,50 €</dd></div>
+            <div><dt>Infusiones</dt><dd>1,50 €</dd></div></dl></div>
+        </div>
+        <div class="carta__col">
+          <div class="menu rise"><h3>Bebidas</h3><dl>
+            <div><dt>Colacao</dt><dd>2,00 €</dd></div>
+            <div><dt>Batido de chocolate o vainilla</dt><dd>2,50 €</dd></div>
+            <div><dt>Zumo de naranja natural</dt><dd>3,00 €</dd></div>
+            <div><dt>Zumo de piña, melocotón o naranja</dt><dd>2,50 €</dd></div>
+            <div><dt>Agua 0,5 L</dt><dd>1,50 €</dd></div>
+            <div><dt>Agua 1,5 L</dt><dd>3,00 €</dd></div></dl></div>
+          <div class="menu rise"><h3>Granizados</h3><dl>
+            <div><dt>Limón</dt><dd>2,50 €</dd></div>
+            <div><dt>Horchata</dt><dd>2,50 €</dd></div>
+            <div><dt>Café</dt><dd>2,80 €</dd></div>
+            <div><dt>Café descafeinado</dt><dd>2,80 €</dd></div>
+            <div><dt>Blanco y negro</dt><dd>4,50 €</dd></div></dl></div>
+          <div class="carta__pic tall rise"><img src="img/granizados.jpg" alt="Granizados de café, limón y horchata" loading="lazy"></div>
+          <div class="menu rise"><h3>Refrescos y cervezas</h3><dl>
+            <div><dt>Refrescos</dt><dd>2,50 €</dd></div>
+            <div><dt>Tinto de verano</dt><dd>3,00 €</dd></div>
+            <div><dt>Tinto de verano de la casa</dt><dd>5,00 €</dd></div>
+            <div><dt>Estrella Galicia</dt><dd>2,50 €</dd></div>
+            <div><dt>Tercio Mahou verde</dt><dd>2,50 €</dd></div>
+            <div><dt>Tercio Mahou 5 Estrellas</dt><dd>2,70 €</dd></div>
+            <div><dt>Tercio sin alcohol</dt><dd>2,50 €</dd></div>
+            <div><dt>Tostada 0,0</dt><dd>2,50 €</dd></div>
+            <div><dt>Alhambra</dt><dd>3,00 €</dd></div>
+            <div><dt>Corona</dt><dd>3,00 €</dd></div>
+            <div><dt>Radler</dt><dd>2,50 €</dd></div>
+            <div><dt>Mixta</dt><dd>2,50 €</dd></div></dl></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EL LOCAL -->
+  <section class="local" id="local" aria-labelledby="t-local">
+    <div class="w">
+      <h2 id="t-local" class="split local__title">Un rincón para saborear el momento</h2>
+      <div class="local__grid">
+        <div>
+          <p class="local__lead rise" style="--i:1">Buen ambiente, trato de casa y una cocina que se nota hecha con ganas.</p>
+          <p class="local__copy rise" style="--i:2">Del primer café de la mañana a la cena con amigos: en El Rincón de Marinela se viene a desayunar, a comer, a merendar y a cenar. Mesas para quedarse, barra para el aperitivo y terraza a pie de calle.</p>
+          <div class="local__moments rise" style="--i:3"><span>Desayuno</span><span>Comida</span><span>Merienda</span><span>Cena</span></div>
+        </div>
+        <div class="local__pics">
+          <figure class="a rise reveal"><img src="img/comedor.jpg" alt="Comedor con mesas blancas, sillas negras y lámparas colgantes" loading="lazy" data-par="0.05"></figure>
+          <figure class="b rise reveal" style="--i:1"><img src="img/aperitivo.jpg" alt="Aceitunas y una bebida fría en la mesa" loading="lazy"></figure>
+        </div>
+      </div>
+      <div class="reviews">
+        <div class="rise">
+          <div class="score" id="score">4,2</div>
+          <p><span class="stars" aria-hidden="true">★★★★☆</span><br>48 opiniones en Google</p>
+        </div>
+        <div class="quotes">
+          <blockquote class="rise">“Excelente oreja, buenísimas croquetas y qué buen tinto de verano de la casa.”<cite>Opinión en Google</cite></blockquote>
+          <blockquote class="rise">“Hamburguesas de gran calidad y sorprende el buen precio que tienen, muy buen trato por parte de los camareros.”<cite>Opinión en Google</cite></blockquote>
+          <blockquote class="rise">“Pedimos un par de raciones y la hamburguesa de volcán y estaba exquisita.”<cite>Opinión en Google</cite></blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISÍTANOS -->
+  <section class="visit dark" id="visitanos" aria-labelledby="t-visit">
+    <div class="w">
+      <h2 id="t-visit" class="split">Te esperamos</h2>
+      <div class="visit__grid">
+        <div class="map rise">
+          <iframe title="Mapa de El Rincón de Marinela en Mota del Cuervo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=El%20Rinc%C3%B3n%20de%20Marinela%2C%20C.%20Fray%20Alonso%20Cano%2016%2C%2016630%20Mota%20del%20Cuervo&z=17&output=embed"></iframe>
+        </div>
+        <div class="visit__side">
+          <div class="rise">
+            <h3>Dirección</h3>
+            <address>C/ Fray Alonso Cano, 16<br>16630 Mota del Cuervo, Cuenca</address>
+          </div>
+          <div class="visit__btns rise" style="--i:1">
+            <a class="btn" href="tel:+34600278770">Llamar · 600 27 87 70</a>
+            <a class="btn btn--line" target="_blank" rel="noopener" href="https://maps.app.goo.gl/ti8168ccjrdHCm5U8">Cómo llegar</a>
+          </div>
+          <div class="rise" style="--i:2">
+            <h3>Horario</h3>
+            <p id="openNow" style="margin-bottom:10px;font-weight:700"></p>
+            <table class="hours" id="hours"><caption class="sr">Horario semanal</caption><tbody></tbody></table>
+          </div>
+          <div class="visit__fachada rise" style="--i:3">
+            <img src="img/fachada.jpg" alt="Fachada de El Rincón con su toldo granate y el rótulo en el escaparate" loading="lazy">
+            <p>Busca el toldo granate y el rótulo de El Rincón. Síguenos en <a class="link" style="color:var(--cream)" href="https://www.instagram.com/elrincondemarinela/" target="_blank" rel="noopener">@elrincondemarinela</a> para ver la burger del mes y las novedades.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="w">
+    <div class="foot__mark" id="footMark" aria-hidden="true"><span>El Rincón</span><span>de Marinela</span></div>
+    <div class="foot__row">
+      <div><h3>La carta</h3><ul><li><a class="link" href="#burgers">Burgers</a></li><li><a class="link" href="#picar">Para picar</a></li><li><a class="link" href="#carta">Carta completa</a></li><li><a class="link" href="#desayunos">Desayunos y meriendas</a></li></ul></div>
+      <div><h3>Horario</h3><ul><li>Lun, mié y jue · 9:00–23:00</li><li>Vie a dom · 9:00–00:00</li><li>Martes cerrado</li></ul></div>
+      <div><h3>Contacto</h3><ul><li><a class="link" href="tel:+34600278770">600 27 87 70</a></li><li><a class="link" href="https://www.instagram.com/elrincondemarinela/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+      <div><h3>Dónde</h3><p>C/ Fray Alonso Cano, 16<br>16630 Mota del Cuervo, Cuenca</p></div>
+    </div>
+    <div class="foot__end">
+      <span>© <span id="year">2026</span> Bar Cafetería El Rincón de Marinela</span>
+      <span>Fotos: Instagram de El Rincón de Marinela y clientes en Google Maps</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  root.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- horario real (Google Maps / Instagram, oct. 2026) ---- */
+  // 0 domingo … 6 sábado; 24 = medianoche
+  const HOURS = { 0: [9, 24], 1: [9, 23], 2: null, 3: [9, 23], 4: [9, 23], 5: [9, 24], 6: [9, 24] };
+  const NAMES = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  const ORDER = [1, 2, 3, 4, 5, 6, 0];
+  const fmt = h => (h === 24 ? '00' : h) + ':00';
+
+  const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+  const get = t => (parts.find(p => p.type === t) || {}).value;
+  const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+  const hour = +get('hour') + (+get('minute')) / 60;
+
+  function status() {
+    const o = HOURS[day];
+    if (o && hour >= o[0] && hour < o[1]) return { open: true, text: 'Abierto ahora · hasta las ' + fmt(o[1]) };
+    // próximo día con apertura
+    for (let k = 0; k < 8; k++) {
+      const d = (day + k) % 7, oo = HOURS[d];
+      if (!oo) continue;
+      if (k === 0 && hour < oo[0]) return { open: false, text: 'Cerrado · abrimos hoy a las ' + fmt(oo[0]) };
+      if (k > 0) return { open: false, text: 'Cerrado · abrimos ' + (k === 1 ? 'mañana' : 'el ' + NAMES[d].toLowerCase()) + ' a las ' + fmt(oo[0]) };
+    }
+  }
+  const st = status();
+  const nowLine = document.getElementById('nowLine');
+  nowLine.classList.toggle('is-closed', !st.open);
+  nowLine.innerHTML = '<i class="dot"></i>';
+  nowLine.append(st.text);
+  document.getElementById('openNow').textContent = st.text;
+
+  const tb = document.querySelector('#hours tbody');
+  ORDER.forEach(d => {
+    const tr = document.createElement('tr');
+    if (d === day) tr.className = 'today';
+    const th = document.createElement('th'); th.scope = 'row'; th.textContent = NAMES[d];
+    const td = document.createElement('td'); td.textContent = HOURS[d] ? fmt(HOURS[d][0]) + ' – ' + fmt(HOURS[d][1]) : 'Cerrado';
+    tr.append(th, td); tb.appendChild(tr);
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---- barra: sólida al bajar, se esconde al seguir bajando ---- */
+  const bar = document.getElementById('bar');
+  let lastY = 0;
+
+
+  /* ---- parallax suave ---- */
+  const par = [...document.querySelectorAll('[data-par]')];
+
+  function onScroll() {
+    const y = scrollY;
+    bar.classList.toggle('is-solid', y > 40);
+    bar.classList.toggle('is-hidden', y > 600 && y > lastY + 4);
+    if (y < lastY - 4) bar.classList.remove('is-hidden');
+    lastY = y;
+    if (!reduce) {
+      par.forEach(img => {
+        const b = img.parentElement.getBoundingClientRect();
+        if (b.bottom < 0 || b.top > innerHeight) return;
+        const p = (b.top + b.height / 2 - innerHeight / 2) / innerHeight;
+        img.style.transform = `translateY(${p * -100 * +img.dataset.par}%) scale(1.14)`;
+      });
+    }
+  }
+  let ticking = false;
+  addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(() => { onScroll(); ticking = false; }); ticking = true; } }, { passive: true });
+  onScroll();
+
+  /* ---- burgers: el escenario cambia con la burger activa ---- */
+  const stageImgs = [...document.querySelectorAll('.stage img')];
+  const count = document.getElementById('stageCount');
+  const items = [...document.querySelectorAll('.burger')];
+  const bio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const i = +e.target.dataset.i;
+    items.forEach(x => x.classList.toggle('is-active', x === e.target));
+    if (stageImgs[i].classList.contains('on')) return; stageImgs.forEach((im, k) => { im.classList.toggle('was', im.classList.contains('on')); im.classList.remove('on'); }); stageImgs[i].classList.add('on'); clearTimeout(window._st); window._st = setTimeout(() => stageImgs.forEach(im => im.classList.remove('was')), 950);
+    count.textContent = (i + 1) + '/' + stageImgs.length;
+  }), { rootMargin: '-45% 0px -45% 0px' });
+  items.forEach(x => bio.observe(x));
+
+  /* ================= ANIMACIONES DINÁMICAS ================= */
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // letras del título de portada
+  let c = 0;
+  document.querySelectorAll('.hero h1 .ln > span').forEach(sp => {
+    const t = sp.textContent; sp.textContent = '';
+    [...t].forEach(ch => { const e = document.createElement('span'); e.className = 'ch'; e.style.setProperty('--c', c++); e.textContent = ch === ' ' ? ' ' : ch; sp.appendChild(e); });
+  });
+
+  // títulos de sección palabra a palabra
+  document.querySelectorAll('.split').forEach(h => {
+    const words = h.textContent.trim().split(/\s+/); h.textContent = '';
+    words.forEach((w, i) => { const o = document.createElement('span'); o.className = 'wd'; o.style.setProperty('--w', i); const n = document.createElement('span'); n.textContent = w; o.appendChild(n); h.appendChild(o); if (i < words.length - 1) h.append(' '); });
+  });
+
+  // bandas en movimiento continuo; aceleran y se inclinan al hacer scroll
+  const rows = [...document.querySelectorAll('.ticker__row')].map(row => {
+    row.innerHTML += row.innerHTML;
+    return { row, x: 0, dir: +row.dataset.dir || -1 };
+  });
+  let vel = 0, prevY = scrollY;
+  function loop() {
+    const y = scrollY; vel = vel * 0.9 + Math.abs(y - prevY) * 0.1; prevY = y;
+    rows.forEach(r => {
+      const half = r.row.scrollWidth / 2;
+      r.x += r.dir * (0.6 + Math.min(vel, 60) * 0.35);
+      if (r.x <= -half) r.x += half; if (r.x > 0) r.x -= half;
+      r.row.style.transform = `translate3d(${r.x}px,0,0) skewX(${-r.dir * Math.min(vel, 40) * 0.25}deg)`;
+    });
+    requestAnimationFrame(loop);
+  }
+  if (!reduce) requestAnimationFrame(loop);
+
+  // barra de progreso de lectura
+  const prog = document.getElementById('progress');
+  addEventListener('scroll', () => { prog.style.transform = `scaleX(${scrollY / (document.documentElement.scrollHeight - innerHeight)})`; }, { passive: true });
+
+  if (fine && !reduce) {
+    // botones magnéticos
+    document.querySelectorAll('.btn').forEach(b => {
+      b.classList.add('mag');
+      b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.25}px, ${(e.clientY - r.top - r.height / 2) * 0.35}px)`; });
+      b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+    });
+    // inclinación 3D en las fotos
+    document.querySelectorAll('.stage, .dish__img, .carta__pic, .hero__pic').forEach(el => {
+      el.classList.add('tilt');
+      const k = el.classList.contains('hero__pic') ? 3 : 7;
+      el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5; el.style.transform = `perspective(900px) rotateY(${px * k}deg) rotateX(${-py * k}deg)`; });
+      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+    });
+  }
+
+  // el nombre del pie se separa y se junta con el scroll
+  const fmEl = document.getElementById('footMark');
+  const fm = [...fmEl.querySelectorAll('span')];
+  addEventListener('scroll', () => {
+    if (reduce || !fmEl.classList.contains('in')) return;
+    const r = fmEl.getBoundingClientRect();
+    if (r.top > innerHeight) return;
+    const k = Math.max(0, r.top / innerHeight);
+    fm[0].style.transform = `translateX(${-k * 12}%)`; fm[1].style.transform = `translateX(${k * 12}%)`;
+  }, { passive: true });
+
+  // los platos de la carta entran en cascada
+  document.querySelectorAll('.panel').forEach(pn => pn.querySelectorAll('.it').forEach((it, i) => it.style.setProperty('--d', Math.min(i, 24))));
+  const cartaIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { document.querySelectorAll('.panel:not([hidden])').forEach(pn => pn.classList.add('on')); cartaIO.disconnect(); } }), { threshold: 0.05 });
+  cartaIO.observe(document.querySelector('.panels'));
+
+  /* ---- pestañas de la carta ---- */
+  const tabs = [...document.querySelectorAll('.tabs [role=tab]')];
+  function selectTab(t, focus) {
+    tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+      const pnl = document.getElementById(x.getAttribute('aria-controls')); pnl.hidden = !on; pnl.classList.remove('on'); if (on) { void pnl.offsetWidth; requestAnimationFrame(() => pnl.classList.add('on')); } });
+    if (focus) t.focus();
+    t.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); selectTab(tabs[(i + d + tabs.length) % tabs.length], true); }
+    });
+  });
+
+  /* ---- entradas ---- */
+  const hero = document.querySelector('.hero');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    hero.classList.add('in');
+    hero.querySelectorAll('.rise').forEach(el => el.classList.add('in'));
+  }));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in'); io.unobserve(e.target);
+    if (e.target.id === 'score' && !reduce) countUp(e.target);
+  }), { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+  document.querySelectorAll('.rise, .reveal, .split, #footMark, #score').forEach(el => { if (!hero.contains(el)) io.observe(el); });
+
+  function countUp(el) {
+    const t0 = performance.now(), dur = 1200;
+    (function f(t) {
+      const k = Math.min(1, (t - t0) / dur), v = 4.2 * (1 - Math.pow(1 - k, 3));
+      el.textContent = v.toFixed(1).replace('.', ',');
+      if (k < 1) requestAnimationFrame(f);
+    })(t0);
+  }
+})();
+</script>
+</body>
+</html>
