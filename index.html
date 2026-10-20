@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-f0ea2m5cAsQOHWeOI1T+Al1gpTXJWKzKxQCv0pb+/p0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://maps.google.com https://www.google.com; connect-src 'none'; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>El Rincón de Marinela · Bar Cafetería en Mota del Cuervo</title>
 <meta name="description" content="Bar cafetería en Mota del Cuervo (Cuenca). Cocina casera con esencia: desayunos, comidas, meriendas y cenas. Burgers de autor, raciones para compartir y tartas artesanas.">
@@ -594,7 +596,7 @@ p { margin: 0; }
       <h2 id="t-visit" class="split">Te esperamos</h2>
       <div class="visit__grid">
         <div class="map rise">
-          <iframe title="Mapa de El Rincón de Marinela en Mota del Cuervo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          <iframe sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" title="Mapa de El Rincón de Marinela en Mota del Cuervo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
             src="https://maps.google.com/maps?q=El%20Rinc%C3%B3n%20de%20Marinela%2C%20C.%20Fray%20Alonso%20Cano%2016%2C%2016630%20Mota%20del%20Cuervo&z=17&output=embed"></iframe>
         </div>
         <div class="visit__side">
@@ -639,6 +641,8 @@ p { margin: 0; }
 
 <script>
 (() => {
+  if (window.top !== window.self) { try { window.top.location = window.self.location; } catch (e) { document.documentElement.style.display = 'none'; } }
+
   const root = document.documentElement;
   root.classList.add('js');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
